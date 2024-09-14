@@ -30,7 +30,7 @@ public class CategoryExtension implements BeforeEachCallback, AfterTestExecution
                                 created.username(),
                                 true
                         );
-                        spendApiClient.updateCategory(archivedCategory);
+                        created = spendApiClient.updateCategory(archivedCategory);
                     }
 
                     context.getStore(NAMESPACE).put(
@@ -56,7 +56,6 @@ public class CategoryExtension implements BeforeEachCallback, AfterTestExecution
                 .getStore(CategoryExtension.NAMESPACE)
                 .get(context.getUniqueId(), CategoryJson.class);
 
-        if (!category.archived()) {
             CategoryJson archivedCategory = new CategoryJson(
                     category.id(),
                     category.name(),
@@ -64,6 +63,5 @@ public class CategoryExtension implements BeforeEachCallback, AfterTestExecution
                     true
             );
             spendApiClient.updateCategory(archivedCategory);
-        }
     }
 }
