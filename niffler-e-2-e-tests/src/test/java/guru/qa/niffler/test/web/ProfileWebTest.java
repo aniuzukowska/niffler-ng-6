@@ -13,28 +13,31 @@ public class ProfileWebTest {
 
     @Category(
             username = "duck",
-            archived = true
+            archived = false
     )
     @Test
-    void archivedCategoryShouldPresentInCategoriesList(CategoryJson category) {
+    void archiveCategoryShouldPresentInCategoriesList(CategoryJson category) {
         Selenide.open(CFG.frontUrl(), LoginPage.class)
                 .login("duck", "12345")
                 .goToProfilePage()
-                .checkThatTableNotContainsArchivedCategory(category.name());
+                .archiveCategory(category.name())
+                .checkThatTableNotContainsCategory(category.name())
+                .showArchivedSwitch()
+                .checkThatTableContainsCategory(category.name());
     }
-
-
 
     @Category(
             username = "duck",
-            archived = false
+            archived = true
     )
     @Test
     void activeCategoryShouldPresentInCategoriesList(CategoryJson category) {
         Selenide.open(CFG.frontUrl(), LoginPage.class)
                 .login("duck", "12345")
                 .goToProfilePage()
-                .checkThatTableContainsActiveCategory(category.name());
+                .showArchivedSwitch()
+                .unarchiveCategory(category.name())
+                .checkThatTableContainsCategory(category.name());
 
     }
 
