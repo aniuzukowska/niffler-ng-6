@@ -3,23 +3,16 @@ package guru.qa.niffler.jupiter;
 import guru.qa.niffler.api.SpendApiClient;
 import guru.qa.niffler.generators.RandomData;
 import guru.qa.niffler.model.CategoryJson;
-import guru.qa.niffler.model.SpendJson;
-import org.apache.kafka.common.protocol.types.Field;
 import org.junit.jupiter.api.extension.*;
 import org.junit.platform.commons.support.AnnotationSupport;
 
 public class CategoryExtension implements BeforeEachCallback, AfterTestExecutionCallback, ParameterResolver {
-    public static final ExtensionContext.Namespace NAMESPACE = ExtensionContext.Namespace.create(SpendingExtension.class);
+    public static final ExtensionContext.Namespace NAMESPACE = ExtensionContext.Namespace.create(CategoryExtension.class);
 
     private final SpendApiClient spendApiClient = new SpendApiClient();
 
     @Override
     public void beforeEach(ExtensionContext context) throws Exception {
-        //добавить пользователю категорию перед тестом
-        //используйте рандомное имя для категории внутри CategoryExtension
-        //для архивных делать два запроса - сначала создать, потом сделать архив
-
-
         AnnotationSupport.findAnnotation(context.getRequiredTestMethod(), Category.class)
                 .ifPresent(anno -> {
                     CategoryJson category = new CategoryJson(

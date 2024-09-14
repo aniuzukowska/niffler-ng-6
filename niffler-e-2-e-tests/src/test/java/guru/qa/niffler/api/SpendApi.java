@@ -1,5 +1,6 @@
 package guru.qa.niffler.api;
 
+import ch.qos.logback.core.net.ssl.SSL;
 import guru.qa.niffler.model.CategoryJson;
 import guru.qa.niffler.model.SpendJson;
 import retrofit2.Call;
