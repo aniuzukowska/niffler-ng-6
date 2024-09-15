@@ -13,6 +13,7 @@ public class MainPage {
   private final SelenideElement historyHeader = $("#spendings h2");
   private final SelenideElement profileButton = $("button[type='button']");
   private final SelenideElement itemMenuProfile = $("a[href='/profile']");
+  private final SelenideElement itemMenuFriends = $("a[href='/people/friends']");
 
   public EditSpendingPage editSpending(String spendingDescription) {
     tableRows.find(text(spendingDescription)).$$("td").get(5).click();
@@ -37,6 +38,12 @@ public class MainPage {
     profileButton.click();
     itemMenuProfile.click();
     return new ProfilePage();
+  }
+
+  public FriendsPage goToFriendsPage() {
+    profileButton.click();
+    itemMenuFriends.click();
+    return new FriendsPage();
   }
 
 }
