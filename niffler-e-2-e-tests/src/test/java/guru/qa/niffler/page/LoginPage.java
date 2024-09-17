@@ -33,7 +33,7 @@ public class LoginPage {
   }
 
   public LoginPage checkErrorText(String errorText) {
-    this.errorText.should(visible);
+    this.errorText.shouldBe(visible);
     this.errorText.shouldHave(text(errorText));
     return this;
   }

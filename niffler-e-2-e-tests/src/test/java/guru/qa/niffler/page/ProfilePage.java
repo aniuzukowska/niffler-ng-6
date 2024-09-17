@@ -2,7 +2,6 @@ package guru.qa.niffler.page;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
-import guru.qa.niffler.model.CategoryJson;
 
 
 import static com.codeborne.selenide.Condition.text;
@@ -19,18 +18,18 @@ public class ProfilePage {
 
     private final SelenideElement showArchivedSwitch = $("input[type='checkbox']");
     private final SelenideElement categoryInput = $("input[name='category']");
-    private final ElementsCollection categoryRows = $$(".css-17u3xlq");
+    private final ElementsCollection categoryRows = $$(".MuiGrid-root .MuiGrid-item");
     private final SelenideElement archiveSubmitButton = $(byText("Archive"));
     private final SelenideElement unArchiveSubmitButton = $(byText("Unarchive"));
 
 
     public ProfilePage checkThatTableContainsCategory(String categoryName) {
-        categoryRows.find(text(categoryName)).should(visible);
+        categoryRows.find(text(categoryName)).shouldBe(visible);
         return this;
     }
 
     public ProfilePage checkThatTableNotContainsCategory(String categoryName) {
-        categoryRows.find(text(categoryName)).shouldNot(visible);
+        categoryRows.find(text(categoryName)).shouldNotBe(visible);
         return this;
     }
 

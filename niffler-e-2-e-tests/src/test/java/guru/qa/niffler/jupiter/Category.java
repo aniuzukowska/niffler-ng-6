@@ -1,5 +1,6 @@
 package guru.qa.niffler.jupiter;
 
+import org.apache.kafka.common.protocol.types.Field;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 import java.lang.annotation.ElementType;
@@ -12,5 +13,6 @@ import java.lang.annotation.Target;
 @ExtendWith(CategoryExtension.class)
 public @interface Category {
     String username();
+    String category() default "";
     boolean archived();
 }

@@ -15,9 +15,13 @@ public class CategoryExtension implements BeforeEachCallback, AfterTestExecution
     public void beforeEach(ExtensionContext context) throws Exception {
         AnnotationSupport.findAnnotation(context.getRequiredTestMethod(), Category.class)
                 .ifPresent(anno -> {
+                    String categoryValue = anno.category().isEmpty()
+                            ? RandomData.getCategory()
+                            : anno.category();
+
                     CategoryJson category = new CategoryJson(
                             null,
-                            RandomData.getCategory(),
+                            categoryValue,
                             anno.username(),
                             false
                     );
