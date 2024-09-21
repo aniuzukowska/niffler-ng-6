@@ -13,7 +13,6 @@ public class ProfileWebTest {
 
     @Category(
             username = "duck",
-            category = "",
             archived = false
     )
     @Test
@@ -29,7 +28,6 @@ public class ProfileWebTest {
 
     @Category(
             username = "duck",
-            category = "",
             archived = true
     )
     @Test
