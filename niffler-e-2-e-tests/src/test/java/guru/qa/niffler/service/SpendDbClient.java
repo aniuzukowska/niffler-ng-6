@@ -32,7 +32,9 @@ public class SpendDbClient {
     );
   }
 
-  public void updateCategory(CategoryJson category) {
-    categoryDao.updateArchived(category.id());
+  public void deleteCategory(CategoryJson category) {
+    CategoryEntity categoryEntity = CategoryEntity.fromJson(category);
+    categoryDao.deleteCategory(categoryEntity);
   }
+
 }

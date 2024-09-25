@@ -57,7 +57,7 @@ public class CategoryExtension implements
           category.username(),
           true
       );
-      spendDbClient.updateCategory(category);
+      spendDbClient.deleteCategory(category);
     }
   }
 

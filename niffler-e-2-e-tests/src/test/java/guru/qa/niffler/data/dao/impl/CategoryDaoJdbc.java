@@ -144,18 +144,4 @@ public class CategoryDaoJdbc implements CategoryDao {
     }
   }
 
-  @Override
-  public void updateArchived(UUID id) {
-    try (Connection connection = Databases.connection(CFG.spendJdbcUrl())) {
-      try (PreparedStatement ps = connection.prepareStatement(
-              "UPDATE category SET archived = true WHERE id = ?"
-      )) {
-        ps.setObject(1, id);
-        ps.execute();
-      }
-    }
-    catch (SQLException e) {
-      throw new RuntimeException(e);
-    }
-  }
 }
