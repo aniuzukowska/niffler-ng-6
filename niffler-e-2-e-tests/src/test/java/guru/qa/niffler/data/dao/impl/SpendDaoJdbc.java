@@ -68,7 +68,12 @@ public class SpendDaoJdbc implements SpendDao {
             se.setSpendDate(rs.getDate("spend_date"));
             se.setAmount(rs.getDouble("amount"));
             se.setDescription(rs.getString("description"));
-            se.setCategory(rs.getObject("category_id", CategoryEntity.class));
+
+            CategoryDaoJdbc categoryDaoJdbc = new CategoryDaoJdbc();
+            CategoryEntity ce = categoryDaoJdbc
+                    .findCategoryById(UUID.fromString(rs.getString("category_id")))
+                    .orElseThrow(() -> new RuntimeException("Category not found"));
+            se.setCategory(ce);
 
             return Optional.of(se);
           } else {
